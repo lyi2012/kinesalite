@@ -28,6 +28,7 @@
   "dependencies": {
     "async": "^2.6.1",
     "bignumber.js": "^7.2.1",
+    "cbor": "^4.1.1",
     "lazy": "^1.0.11",
     "level-sublevel": "^6.6.2",
     "levelup": "^3.0.1",
