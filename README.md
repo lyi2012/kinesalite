@@ -1,18 +1,18 @@
 Kinesalite
 ----------
 
-[![Build Status](https://secure.travis-ci.org/mhart/kinesalite.png?branch=master)](http://travis-ci.org/mhart/kinesalite)
-
 An implementation of [Amazon's Kinesis](http://docs.aws.amazon.com/kinesis/latest/APIReference/),
-focussed<a href="#focussed"><sup>1</sup></a> on correctness and performance, and built on LevelDB
-(well, [@rvagg](https://github.com/rvagg)'s awesome [LevelUP](https://github.com/rvagg/node-levelup) to be precise).
+built on LevelDB (well, [@rvagg](https://github.com/rvagg)'s awesome [LevelUP](https://github.com/rvagg/node-levelup) to be precise).
 
 The Kinesis equivalent of [dynalite](https://github.com/mhart/dynalite).
 
 To read and write from Kinesis streams in Node.js, consider using the [kinesis](https://github.com/mhart/kinesis)
 module.
 
-**NOTE:** Starting with v1.0, SSL/HTTPS is no longer the default. Use `--ssl` to enable pre-v1.0 behaviour.
+**NOTE:** 
+Starting with v1.0, SSL/HTTPS is no longer the default. Use `--ssl` to enable pre-v1.0 behaviour.
+
+This is a forked repository from (https://github.com/tmccombs/kinesalite) with the fix to work with AWS SDK for JAVA 2.x. 
 
 Example
 -------
@@ -70,15 +70,6 @@ var kinesis = require('kinesis')
 kinesis.listStreams({host: 'localhost', port: 4567}, console.log)
 ```
 
-### CBOR protocol issues with the Java SDK
-
-The Java AWS SDK recently changed their Kinesis client to default to the [CBOR protocol](http://cbor.io/), which kinesalite doesn't support – you may see an error like this:
-```
-com.amazonaws.AmazonServiceException: Unable to parse HTTP response content (Service: AmazonKinesis; Status Code: 404; Error Code: null;
-```
-
-You can set the `AWS_CBOR_DISABLE` environment variable to disable this (any value should work, eg `true` or `1`) before invoking any of the Kinesis calls in the Java SDK.
-
 Installation
 ------------
 
@@ -87,9 +78,3 @@ With [npm](http://npmjs.org/) do:
 ```sh
 $ npm install -g kinesalite
 ```
-
-Footnotes
----------
-
-<a id="focussed"><sup>1</sup></a>Hi! You're probably American ([and not a New Yorker editor](https://www.newyorker.com/books/page-turner/the-double-l)) if you're worried about this spelling. No worries –
-and no need to open a pull request – we have different spellings in the rest of the English speaking world 🐨
