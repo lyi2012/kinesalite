@@ -83,19 +83,7 @@ function checkTypes(data, types) {
             throw typeError('class com.amazon.coral.value.json.numbers.TruncatingBigNumber can not be converted to a Blob')
           case 'object':
             if (Array.isArray(val)) throw typeError('Start of list found where not expected')
-            throw typeError('Start of structure or map found where not expected.')
         }
-        if (val.length % 4)
-          throw typeError('\'' + val + '\' can not be converted to a Blob: ' +
-            'Base64 encoded length is expected a multiple of 4 bytes but found: ' + val.length)
-        var match = val.match(/[^a-zA-Z0-9+/=]|\=[^=]/)
-        if (match)
-          throw typeError('\'' + val + '\' can not be converted to a Blob: ' +
-            'Invalid Base64 character: \'' + match[0][0] + '\'')
-        // TODO: need a better check than this...
-        if (new Buffer(val, 'base64').toString('base64') != val)
-          throw typeError('\'' + val + '\' can not be converted to a Blob: ' +
-            'Invalid last non-pad Base64 character dectected')
         return val
       case 'Timestamp':
         switch (typeof val) {
